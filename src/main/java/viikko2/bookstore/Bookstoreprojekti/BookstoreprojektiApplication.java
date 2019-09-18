@@ -1,7 +1,10 @@
 package viikko2.bookstore.Bookstoreprojekti;
 
+
 import viikko2.bookstore.Bookstoreprojekti.domain.Book;
 import viikko2.bookstore.Bookstoreprojekti.domain.BookRepository;
+import viikko2.bookstore.Bookstoreprojekti.domain.Category;
+import viikko2.bookstore.Bookstoreprojekti.domain.CategoryRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +12,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-
 
 
 @SpringBootApplication
@@ -24,12 +25,19 @@ public class BookstoreprojektiApplication {
 
 	//  testidatan luonti H2-testitietokantaan aina sovelluksen käynnistyessä
 	@Bean
-	public CommandLineRunner Demo(BookRepository bookRepository) { 
+	public CommandLineRunner Demo(BookRepository bookRepository, CategoryRepository categoryRepository) { 
 		return (args) -> {
 			log.info("save a couple of books");
 			//(Long id, String title, String author, Integer year, String isbn, double price)
-			bookRepository.save(new Book("Cooking", "Milla Magia", 1985, "12345x", 12.90));
-			bookRepository.save(new Book("Cooking2", "Milla Magia", 1985, "12346x", 14.90));	
+			
+			categoryRepository.save(new Category("Food"));
+			categoryRepository.save(new Category("Scifi"));
+			categoryRepository.save(new Category("Fantasy"));
+			categoryRepository.save(new Category("Romance"));
+			
+			//drepository.findByName("Business").get(0)));
+			bookRepository.save(new Book("Cooking", "Milla Magia", 1985, "12345x", 12.90, categoryRepository.findByName("Food").get(0)));
+			bookRepository.save(new Book("Harry Potter", "Rowling", 1999, "12346x", 14.90,categoryRepository.findByName("Scifi").get(0)));	
 			
 			log.info("fetch all books");
 			for (Book book : bookRepository.findAll()) {

@@ -4,6 +4,8 @@ package viikko2.bookstore.Bookstoreprojekti.web;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import viikko2.bookstore.Bookstoreprojekti.domain.Book;
 import viikko2.bookstore.Bookstoreprojekti.domain.BookRepository;
+import viikko2.bookstore.Bookstoreprojekti.domain.CategoryRepository;
 
 
 @Controller
@@ -24,6 +27,10 @@ public class BookController {
 	   // ja kytkee olion BookController-luokasta luodun olion attribuuttiolioksi
 	@Autowired
 	BookRepository bookRepository;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
+	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
 	@RequestMapping(value = "/index" , method = RequestMethod.GET)
 	public String getindex(Model model) {
@@ -35,6 +42,7 @@ public class BookController {
 	@RequestMapping(value = "/addbook" , method = RequestMethod.GET)
 		public String getNewBookForm(Model model) {
 		model.addAttribute("book", new Book());	// "tyhjä" book-olio
+		model.addAttribute("categories", categoryRepository.findAll());
 			return "addbook";
 	
 	}
@@ -50,7 +58,9 @@ public class BookController {
 	//Lomakkeen tietojen vastaanotto ja tallennus kantaan
 	@RequestMapping(value = "/addbook",method = RequestMethod.POST)
 	public String add(Book book) {
+		log.debug(book.toString());
 		bookRepository.save(book);
+		log.debug(book.toString());
 		return "redirect:booklist";
 	}
 	

@@ -6,14 +6,17 @@
 </head>
 <body>
 	<h1>Give me new book</h1>
-	<p>title, author, year, isbn, price</p>
+	<p>title, author, year, isbn, price, category</p>
 	<form action="#" th:action="@{/addbook}"  th:object= ${book} method="post">
 	<p>title: <input type="text" th:field="${book.title}" /></p>
 	<p>author: <input type="text" th:field="${book.author}" /></p>
 	<p>year: <input type="text" th:field="${book.year}" /></p>
 	<p>isbn: <input type="text" th:field="${book.isbn}" /></p>
 	<p>price: <input type="text" th:field="${book.price}" /></p>
-	
+	<label for="categorylist">Category</label>
+	<select id="categorylist" th:field="*{category}" class="form-control">
+    <option th:each="category: ${categories}" th:value="${category.categoryId}" th:text="${category.name}"></option>
+	</select>
 	<input type="submit" value="Submit" />
 	</form>
     

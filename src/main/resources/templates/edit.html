@@ -13,6 +13,7 @@
 	<p>year: <input type="text" th:field="${foundedbook.year}" /></p>
 	<p>isbn: <input type="text" th:field="${foundedbook.isbn}" /></p>
 	<p>price: <input type="text" th:field="${foundedbook.price}" /></p>
+	<p>category: <input type="text" th:field="${foundedbook.category.name}" /></p>
 	<input type="hidden" th:field="${foundedbook.id}" />
 	
 	<input type="submit" value="Submit" />
