@@ -37,6 +37,11 @@ public class BookController {
 	return "index";
 
 }
+	 // Home page of REST services
+    @RequestMapping(value="/homepagerest", method = RequestMethod.GET)
+    public String getRestHome() {	
+    	return "homepagerest"; // resthomepage.html
+    }
 	
 	// tyhjän kirjalomakkeen muodostaminen
 	@RequestMapping(value = "/addbook" , method = RequestMethod.GET)

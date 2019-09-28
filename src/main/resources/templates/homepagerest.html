@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.com">
+<head>
+<meta charset="utf-8" />
+<title>REST Home Page</title>
+</head>
+<body>
+<h1>REST Home Page</h1>
+
+	<h2>All Books</h2>
+	<p>
+		<strong>Method:</strong> GET <strong>Endpoint:</strong> <strong><a
+			href="/books">/books</a></strong>
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>[
+  {
+        "id": 5,
+        "title": "Cooking",
+        "author": "Milla Magia",
+        "year": 1985,
+        "isbn": "12345x",
+        "price": 12.9
+    }
+  {
+        "id": 6,
+        "title": "Cooking 2",
+        "author": "Milla Magia",
+        "year": 1985,
+        "isbn": "12345xy",
+        "price": 12.95
+    }
+]</code></pre>
+
+	<h2>Book By Id</h2>
+	<p>
+		<strong>GET </strong><strong> /books/{id} </strong> <strong>
+		<a href="/books/2">book/6</a></strong>
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>{
+        
+        "title": "Cooking",
+        "author": "Milla Magia",
+        "year": 1985,
+        "isbn": "12345x",
+        "price": 12.9
+    }</code></pre>
+	<h2>New Book</h2>
+	<p>
+		<strong>POST </strong> <strong> /books</strong> (Test
+		with <a href="https://www.getpostman.com/" target="_blank">PostMan</a>/etc.)
+	</p>
+	<p>
+		<strong>JSON Example:</strong>
+	</p>
+	<pre><code>{
+        "title": "Cooking",
+        "author": "Milla Magia",
+        "year": 1985,
+        "isbn": "12345x",
+        "price": 12.9
+    }</code></pre>
+</body>
+</html>
