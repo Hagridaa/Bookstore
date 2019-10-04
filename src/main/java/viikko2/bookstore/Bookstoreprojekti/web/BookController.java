@@ -31,6 +31,11 @@ public class BookController {
 	@Autowired
 	CategoryRepository categoryRepository;
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
+	
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
 
 	@RequestMapping(value = "/index" , method = RequestMethod.GET)
 	public String getindex(Model model) {
