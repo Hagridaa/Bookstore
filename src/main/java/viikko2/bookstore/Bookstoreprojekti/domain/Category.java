@@ -21,7 +21,7 @@ public class Category {
 	//private List<Student> students;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-	private List<Book> Books;
+	private List<Book> books;
 	
  	public Category(String name) {
 		super();

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,6 +85,7 @@ public class BookController {
 									// joka prosessoidaan palvelimella
 }
 		//kirjan poisto
+		@PreAuthorize("hasAuthority('ADMIN')")
 		@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 		public String deleteBook(@PathVariable("id") Long bookId, Model model) {
 			bookRepository.deleteById(bookId);
@@ -95,6 +97,7 @@ public class BookController {
 		
 		// /edit
 		//haetaan annettu id kuten delete toiminnossa getillä
+		@PreAuthorize("hasAuthority('ADMIN')")
 		@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
 		public String editBook(@PathVariable("id") Long bookId, Model model) {
 			//etsitään id:n avulla muokattavan kirjan tiedot
