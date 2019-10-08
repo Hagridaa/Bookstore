@@ -27,7 +27,7 @@
 			<th>isbn</th>
 			<th>price</th>
 			<th>category</th>
-			<th sec:authorize="hasRole('ADMIN')"> </th>
+			<th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>
 
 		<tr th:each="book : ${books}">
