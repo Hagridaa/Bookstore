@@ -37,9 +37,9 @@ protected void configure(HttpSecurity http) throws Exception{
      //.anyRequest().authenticated()
  	//.and()
  .formLogin()
-     //.loginPage("/login")
+     .loginPage("/login").permitAll()
      .defaultSuccessUrl("/booklist")
-     .permitAll()
+     
      .and()
  .logout()
      .permitAll();	

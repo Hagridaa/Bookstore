@@ -38,11 +38,10 @@ public class BookController {
         return "login";
     }
 
-	@RequestMapping(value = "/index" , method = RequestMethod.GET)
-	public String getindex(Model model) {
-	return "index";
-
-}
+//	@RequestMapping(value = "/login" , method = RequestMethod.GET)
+//	public String getindex(Model model) {
+//	return "login";
+//}
 	 // Home page of REST services
     @RequestMapping(value="/homepagerest", method = RequestMethod.GET)
     public String getRestHome() {	
